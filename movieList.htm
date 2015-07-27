@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   
 </head>
-<body >
+<body onload="ClickCommand()">
 <script src="movieList.js"></script>
 
 <div class="container-fluid">
@@ -22,23 +22,16 @@
   <button onclick ="GetList(url,'movies')" type="button" class="btn btn-primary" >Movies</button>
   <button onclick ="GetList(url,'series')" type="button" class="btn btn-primary" >Series</button>
   <button onclick ="ClickCommand()" type="button" class="btn btn-primary" >Command</button>
-
+ 
 
 </div>
 </div>
 <div class="col-md-8" style="background-color:lavenderblush;">
-  <h2 id="menuHeader"></h2>
-  <ul id="menuList">
   
-  </ul> 
-  <p>
-	<button onclick ="sendAction('playpause')" type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
-	<button onclick ="sendAction('playpause')" type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
-	<button onclick ="sendAction('stop')" type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></button>
-	<button onclick ="sendAction('volume/down')" type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span></button>
-	<button onclick ="sendAction('volume/up')" type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></button>
-	<button onclick ="sendAction('')" type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
-  </p>
+  <h2 id="menuHeader"></h2>
+ 
+  <p id="menuList"></p> 
+ 
 </div>
 
 
