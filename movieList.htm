@@ -1,41 +1,83 @@
+
+
 <!DOCTYPE html>
 <html>
-<head>
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  
-</head>
-<body onload="ClickCommand()">
-<script src="movieList.js"></script>
 
-<div class="container-fluid">
+  <head>
+    <script src="http://code.angularjs.org/1.2.0-rc.2/angular.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <body ng-app="">
+    <script src="movieList.js"></script>
+  <div class="container-fluid">
 
-<div class="jumbotron">
-  <h1>Alo les petits cutes!!!</h1> 
-</div>
+    <div class="jumbotron">
+      <h1>Alo les petits cutes!!!</h1>
+    </div>
 
-<div class="row">
+        <div class="row">
 
-<div class="col-md-2" >
-<div class="btn-group-vertical" role="group" aria-label="...">
-  <button onclick ="ClickDownload()" type="button" class="btn btn-primary" >Download</button>
-  <button onclick ="GetList(url,'movies')" type="button" class="btn btn-primary" >Movies</button>
-  <button onclick ="GetList(url,'series')" type="button" class="btn btn-primary" >Series</button>
-  <button onclick ="ClickCommand()" type="button" class="btn btn-primary" >Command</button>
- 
-
-</div>
-</div>
-<div class="col-md-8" style="background-color:lavenderblush;">
-  
-  <h2 id="menuHeader"></h2>
- 
-  <p id="menuList"></p> 
- 
-</div>
+        <div class="col-md-2" >
+          <div class="btn-group-vertical" role="group" aria-label="...">
+            <button type="button" class="btn btn-primary"><a href="Book/Moby">Download</a></button>
+            <button type="button" class="btn btn-primary"><a href="Book/Moby">Movies</a></button>
+            <button type="button" class="btn btn-primary"><a href="Book/Moby">Series</a></button>
+            <button type="button" class="btn btn-primary"><a href="Book/Moby">Command</a></button>
 
 
-</div>
+          </div>
+        </div>
+      <div class="col-md-8" style="background-color:lavenderblush;">
+      <h1>Movies</h1>
+      <div ng-controller="MoviesList">
+        <table>
+          <thead style="background-color: lightgray;">
+            <tr>
+              <td style="width: 30px;"></td>
 
-</body>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat-start="movie in movies | orderBy:'title'">
+              <td>
+                <button  ng-click="Play(movie.id)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+              </td>
+              <td>
+                <button  ng-click="Delete(movie.id)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+              </td>
+              <td>
+                <button ng-if="movie.expanded" ng-click="movie.expanded = false" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                <button ng-if="!movie.expanded" ng-click="movie.expanded = true" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+              </td>
+              <td>
+                {{movie.title}}
+              </td>
+
+            </tr>
+            <tr ng-if="movie.expanded" ng-repeat-end="" ng-controller="MoviesInfo">
+
+              <td colspan="3">
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <h1>{{info.Title}}</h1>
+                        <p>{{info.Plot}}<br><br>imbd Rating = {{info.imdbRating}}</p>
+                     </div>
+                     <div class="col-sm-4">
+                        <img ng-src={{info.Poster}} >
+                     </div>
+
+                  </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+    </div>
+  </body>
+
+
 </html>
